@@ -13,6 +13,23 @@ import gon from 'gon';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+class Hello extends React.Component {
+  render() {
+    return <div>Hello</div>;
+  }
+}
+
+class Channels extends React.Component {
+  render() {
+    const { data } = this.props;
+    return(
+      <ul>
+        {data.map(item => <li key={item.id}>{item.name}</li>)}
+      </ul>
+    );
+  }
+}
+
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
@@ -20,12 +37,10 @@ if (process.env.NODE_ENV !== 'production') {
 console.log('it works!');
 console.log('gon', gon);
 
-
-export default class Hello extends React.Component {
-  render() {
-    return <div>Hello</div>;
-  }
-}
+const { channels } = gon
+channels.forEach(channel => {
+  console.log(channel.name);
+});
 
 const mountNode = document.getElementById('chat');
-ReactDOM.render(<Hello />, mountNode);
+ReactDOM.render(<Channels data={channels} />, mountNode);
