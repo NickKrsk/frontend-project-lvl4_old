@@ -22,10 +22,14 @@ class Hello extends React.Component {
 class Channels extends React.Component {
   render() {
     const { data } = this.props;
-    return(
-      <ul>
-        {data.map(item => <li key={item.id}>{item.name}</li>)}
-      </ul>
+    return(   
+     // <div className="shopping-list"></div>
+     // <h1>Список покупок для </h1>
+        <ul>
+          <>
+          {data.map(item => <li key={item.id}>{item.name}</li>)}
+          </>
+        </ul>
     );
   }
 }
