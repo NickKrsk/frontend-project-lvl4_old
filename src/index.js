@@ -13,26 +13,8 @@ import gon from 'gon';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Hello extends React.Component {
-  render() {
-    return <div>Hello</div>;
-  }
-}
+import Chat from './Chat.jsx'; 
 
-class Channels extends React.Component {
-  render() {
-    const { data } = this.props;
-    return(   
-     // <div className="shopping-list"></div>
-     // <h1>Список покупок для </h1>
-        <ul>
-          <>
-          {data.map(item => <li key={item.id}>{item.name}</li>)}
-          </>
-        </ul>
-    );
-  }
-}
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -47,4 +29,5 @@ channels.forEach(channel => {
 });
 
 const mountNode = document.getElementById('chat');
-ReactDOM.render(<Channels data={channels} />, mountNode);
+ReactDOM.render(<Chat data={channels} />, mountNode);
+//ReactDOM.render(<Channels data={channels} />, mountNode);
