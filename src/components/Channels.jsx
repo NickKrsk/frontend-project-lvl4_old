@@ -10,9 +10,7 @@ export default class Channels extends React.Component {
   }
 
   selectChannel = (channelName) => () => {
-    //console.log(channelName);
     this.setState({ activeChannelName: channelName});
-    //console.log(this.state.activeChannelName);
   }
 
   getButtonClassName = (channelName) => {
@@ -21,6 +19,8 @@ export default class Channels extends React.Component {
 
   render() {
     const { data } = this.props;
+    console.log('Channels');
+    console.log(myContext);
     return(   
      // <div className="shopping-list"></div>
      // <h1>Список покупок для </h1>

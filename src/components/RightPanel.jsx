@@ -7,6 +7,7 @@ export default class Chat extends React.Component {
 
   render() {
     const { data } = this.props;
+
     /*return(   
       <div id="messages-box" className="chat-messages overflow-auto mb-3"></div>
    //   <input type="text" size="40" />
