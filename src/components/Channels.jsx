@@ -18,15 +18,15 @@ export default class Channels extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { channels } = this.props;
     console.log('Channels');
-    console.log(myContext);
+    //console.log(myContext);
     return(   
      // <div className="shopping-list"></div>
      // <h1>Список покупок для </h1>
         <ul className='nav flex-column nav-pills nav-fill'>
           <>
-          {data.map(item => 
+          {channels.map(item => 
             <li className='nav-item' key={item.id}>
               <button 
                       onClick={this.selectChannel(item.name)} 

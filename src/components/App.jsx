@@ -2,15 +2,16 @@ import { data } from 'jquery';
 import React, { useEffect } from 'react';
 import Channels from './Channels'
 import RightPanel from './RightPanel'; 
+import Basic from './Basic'; 
 
 export default class App extends React.Component {
   render() {
-    const { data } = this.props;
+    const { channels } = this.props;
 
     return(
       <div className='row h-100 pb-3'>
         <div className='col-3 border-right'>
-          <Channels data={data}/>
+          <Channels channels={channels}/>
         </div>   
         <div className='col h-100'>
           <RightPanel />

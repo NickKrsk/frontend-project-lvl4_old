@@ -5,9 +5,9 @@ import 'regenerator-runtime/runtime';
 
 import '../assets/application.scss';
 
-// import faker from 'faker';
+import faker from 'faker';
 import gon from 'gon';
-// import cookies from 'js-cookie';
+import cookies from 'js-cookie';
 // import io from 'socket.io-client';
 
 import React from 'react';
@@ -25,22 +25,29 @@ if (process.env.NODE_ENV !== 'production') {
 console.log('it works!');
 console.log('gon', gon);
 
-const { channels } = gon
-channels.forEach(channel => {
+const { channels, messages } = gon;
+console.log(messages);
+/*channels.forEach(channel => {
   console.log(channel.name);
-});
+});*/
 
 //const mountNode = document.getElementById('chat');
 //ReactDOM.render(<Chat data={channels} />, mountNode);
-//ReactDOM.render(<Channels data={channels} />, mountNode);
-
 //const store = createStore(rootReducer);
+
+const username = cookies.get('username');
+if (!username) {
+  console.log('New user');
+  cookies.set('username', faker.name.findName());
+} else {
+  console.log(`User exist: ${username}`);
+}
 
 const myContext = React.createContext('username');
 myContext.displayName = 'MyDisplayName';
 //console.log(myContext.displayName);
 
 render(
-  <App data={channels}/>,
+  <App channels={channels} messages={messages}/>,
   document.getElementById('chat')
 )
