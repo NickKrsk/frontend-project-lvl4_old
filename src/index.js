@@ -17,6 +17,15 @@ import { render } from 'react-dom'
 import App from './components/App'; 
 import { Provider } from 'react-redux'
 
+const setUsernameToCookies = () => {
+  const username = cookies.get('username');
+  if (!username) {
+    console.log('New user');
+    cookies.set('username', faker.name.findName());
+  } else {
+    console.log(`User exist: ${username}`);
+  }  
+}
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -27,27 +36,25 @@ console.log('gon', gon);
 
 const { channels, messages } = gon;
 console.log(messages);
-/*channels.forEach(channel => {
-  console.log(channel.name);
-});*/
+messages.forEach(message => {
+  console.log(message);
+});
 
-//const mountNode = document.getElementById('chat');
-//ReactDOM.render(<Chat data={channels} />, mountNode);
+//ReactDOM.render(<Chat data={channels} />, document.getElementById('chat'));
 //const store = createStore(rootReducer);
 
-const username = cookies.get('username');
-if (!username) {
-  console.log('New user');
-  cookies.set('username', faker.name.findName());
-} else {
-  console.log(`User exist: ${username}`);
-}
+setUsernameToCookies();
 
-const myContext = React.createContext('username');
-myContext.displayName = 'MyDisplayName';
+const username = cookies.get('username');
+
+export const userContext = React.createContext(username);
+
+//userContext.displayName = 'MyDisplayName';
 //console.log(myContext.displayName);
 
 render(
-  <App channels={channels} messages={messages}/>,
+  <userContext.Provider value={username}>
+    <App channels={channels} messages={messages}/>
+  </userContext.Provider>,
   document.getElementById('chat')
 )

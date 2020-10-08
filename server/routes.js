@@ -118,7 +118,8 @@ export default (app, io, defaultState = {}) => {
         channelId: Number(req.params.channelId),
         id: getNextId(),
       };
-      state.messages.push(message);
+      console.log(req.body);
+      state.messages.push(attributes);
       reply.code(201);
       const data = {
         data: {

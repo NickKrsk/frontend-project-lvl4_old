@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import routers from '../routes';
+import axios from 'axios';
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -8,16 +9,21 @@ export default class Chat extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { messages } = this.props;
+
+    console.log('messages');
+    console.log(messages);
 
     return (
       <>
       <div id="messages-box" className="chat-messages overflow-auto mb-3"></div>
       <div>
-          <b>dgdfgfg</b>
-          ": "
-          "test"
+        <b>dgdfgfg</b>: test 
       </div>
+      <div>
+        <b>dgdfgfg</b>: test 
+      </div>
+      {messages.map(message => <div><b>{message.nickname}</b> : {message.body}</div>)}
       <div>
       <Formik
         initialValues={{ message: 'you message' }}
@@ -31,6 +37,35 @@ export default class Chat extends React.Component {
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             //alert(JSON.stringify(values, null, 2));
+            const channelId = 1;
+            const { message } = values;
+            const path = routers.channelMessagesPath(1); 
+            console.log(message);
+            console.log(path);
+
+            const messageOb = {
+              body: message,
+              //channelId,
+              nickname:'Nick123',
+            };
+
+            const data = {
+              type: 'messages',
+              attributes: messageOb,
+            };
+        
+            console.log(data);
+
+            axios.post(path, {
+              data,
+            })
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
             setSubmitting(false);
           }, 1000);
         }}

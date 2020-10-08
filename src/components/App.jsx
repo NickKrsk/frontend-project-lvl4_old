@@ -3,10 +3,15 @@ import React, { useEffect } from 'react';
 import Channels from './Channels'
 import RightPanel from './RightPanel'; 
 import Basic from './Basic'; 
+import { userContext } from '../index';
 
 export default class App extends React.Component {
+  static contextType = userContext;
+
   render() {
-    const { channels } = this.props;
+    const { channels, messages } = this.props;
+
+    console.log(`context: ${this.context}`);
 
     return(
       <div className='row h-100 pb-3'>
@@ -14,7 +19,7 @@ export default class App extends React.Component {
           <Channels channels={channels}/>
         </div>   
         <div className='col h-100'>
-          <RightPanel />
+          <RightPanel messages={messages}/>
         </div> 
       </div>
     );
