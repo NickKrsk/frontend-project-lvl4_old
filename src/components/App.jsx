@@ -3,14 +3,15 @@ import React, { useEffect } from 'react';
 import Channels from './Channels'
 import RightPanel from './RightPanel'; 
 import Basic from './Basic'; 
-import { userContext } from '../index';
+import { UserContext } from '../user-context';
 
 export default class App extends React.Component {
-  static contextType = userContext;
+  static contextType = UserContext;
 
   render() {
     const { channels, messages } = this.props;
 
+    //console.log(`context: ${UserContext}`);
     console.log(`context: ${this.context}`);
 
     return(
@@ -23,22 +24,6 @@ export default class App extends React.Component {
         </div> 
       </div>
     );
-
-    /*return(
-      <div>
-      <Channels data={data}/>
-      <Chat/>
-      </div>
-    );*/
   }
 }
 
-/*function App() {
-  return(
-    <div>
-    <Channels />
-    </div>
-  );
-}
-
-export default App*/

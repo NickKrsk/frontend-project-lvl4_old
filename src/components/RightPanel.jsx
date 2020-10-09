@@ -2,14 +2,18 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import routers from '../routes';
 import axios from 'axios';
+import { UserContext } from '../user-context';
 
 export default class Chat extends React.Component {
+  static contextType = UserContext;
+
   constructor(props) {
     super(props);
   }
 
   render() {
     const { messages } = this.props;
+    const username = this.context;
 
     console.log('messages');
     console.log(messages);
@@ -17,12 +21,6 @@ export default class Chat extends React.Component {
     return (
       <>
       <div id="messages-box" className="chat-messages overflow-auto mb-3"></div>
-      <div>
-        <b>dgdfgfg</b>: test 
-      </div>
-      <div>
-        <b>dgdfgfg</b>: test 
-      </div>
       {messages.map(message => <div><b>{message.nickname}</b> : {message.body}</div>)}
       <div>
       <Formik
@@ -46,7 +44,7 @@ export default class Chat extends React.Component {
             const messageOb = {
               body: message,
               //channelId,
-              nickname:'Nick123',
+              nickname: username,
             };
 
             const data = {
@@ -72,6 +70,7 @@ export default class Chat extends React.Component {
       >
         {({ isSubmitting }) => (
           <Form>
+            <div>You: <b>{username}</b></div>
             <Field type="text" name="message" />
             <ErrorMessage name="text" component="div" />
             <button className="btn btn-primary" type="submit" disabled={isSubmitting}>

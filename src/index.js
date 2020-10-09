@@ -2,7 +2,6 @@
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-
 import '../assets/application.scss';
 
 import faker from 'faker';
@@ -12,10 +11,13 @@ import cookies from 'js-cookie';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
 
 import App from './components/App'; 
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+import {UserContext} from './user-context';
+
+import store from './app/store';
 
 const setUsernameToCookies = () => {
   const username = cookies.get('username');
@@ -31,7 +33,6 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-console.log('it works!');
 console.log('gon', gon);
 
 const { channels, messages } = gon;
@@ -46,15 +47,18 @@ messages.forEach(message => {
 setUsernameToCookies();
 
 const username = cookies.get('username');
+console.log(`username: ${username}`);
 
-export const userContext = React.createContext(username);
+//export const UserContext = React.createContext(username);
 
 //userContext.displayName = 'MyDisplayName';
 //console.log(myContext.displayName);
 
 render(
-  <userContext.Provider value={username}>
-    <App channels={channels} messages={messages}/>
-  </userContext.Provider>,
+  <UserContext.Provider value={username}>
+    <Provider store={store}>
+      <App channels={channels} messages={messages}/>
+    </Provider>
+  </UserContext.Provider>,
   document.getElementById('chat')
 )
