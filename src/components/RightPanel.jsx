@@ -6,11 +6,7 @@ import { UserContext } from '../user-context';
 
 export default class Chat extends React.Component {
   static contextType = UserContext;
-
-  constructor(props) {
-    super(props);
-  }
-
+  
   render() {
     const { messages } = this.props;
     const username = this.context;
