@@ -12,10 +12,10 @@ import cookies from 'js-cookie';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
 import App from './components/App'; 
-import { Provider } from 'react-redux';
-import {UserContext} from './user-context';
+import { UserContext } from './user-context';
 
 import store from './app/store';
 
