@@ -39,7 +39,7 @@ export default class Chat extends React.Component {
 
             const messageOb = {
               body: message,
-              //channelId,
+              channelId: 1,
               nickname: username,
             };
 
