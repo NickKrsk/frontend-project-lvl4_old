@@ -14,10 +14,7 @@ export default class Chat extends React.Component {
     console.log('messages');
     console.log(messages);
 
-    return (
-      <>
-      <div id="messages-box" className="chat-messages overflow-auto mb-3"></div>
-      {messages.map(message => <div><b>{message.nickname}</b> : {message.body}</div>)}
+    return (     
       <div>
       <Formik
         initialValues={{ message: 'you message' }}
@@ -75,39 +72,7 @@ export default class Chat extends React.Component {
           </Form>
         )}
       </Formik>
-      </div>
-      </>
+      </div>  
     );
-
-    /*return(   
-      <div id="messages-box" className="chat-messages overflow-auto mb-3"></div>
-   //   <input type="text" size="40" />
-    );*/
-
-    return (
-      <>
-      <div id="messages-box" className="chat-messages overflow-auto mb-3"></div>
-        <div>
-          <b>dgdfgfg</b>
-          ": "
-          "test"
-        </div>
-      <div className="mt-auto">
-      <div className="form-group"></div>
-        <form  className="todo-form form-inline mx-3">          
-          <input
-            type="text"
-            //onChange={this.handleChangeTask}
-            //value={newTaskText}
-            required
-            className="form-control mr-3"
-            placeholder="message"
-          />
-          <button type="submit" className="btn btn-primary">add</button>
-        </form>     
-      </div> 
-      </>
-    );
-
   }
 }
