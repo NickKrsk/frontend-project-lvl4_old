@@ -35,14 +35,14 @@ export default (gon) => {
   const defaultState = {
     channels: {
       allIds: channels.map(({ id }) => id),
-      currentChannelId,    
+      currentChannelId,
     },
     messages: {
-      allIds: messages.map( ({ id }) => id ),
+      allIds: messages.map(({ id }) => id),
     },
   };
 
-  if ( !getUsername() ) {
+  if (!getUsername()) {
     setUsernameToCookies();
   }
 
