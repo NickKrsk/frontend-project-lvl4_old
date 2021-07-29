@@ -1,2 +1,2 @@
-web: npx nodemon --exec npx babel-node server/bin/slack.js
-frontend:npx webpack-dev-server
+web: make start-backend
+frontend: make start-frontend
